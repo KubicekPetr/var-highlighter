@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+
+// todo reimplement with backend to serve static files on routes and highlight variables on it
+// for now just copy the code in component
+
 import './App.css';
+
+function highlight(strings, ...values) {
+  return strings.map((string, i) => {
+    return (<span key={i}>
+      {string}<span className='highlight'>{values[i] || ''}</span>
+    </span>);
+  });
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {content}
     </div>
   );
 }
+
+const content = highlight`function ${App.name}() {
+  return (
+    <div className="App">
+      {${'content'}}
+    </div>
+  );
+}`;
 
 export default App;
